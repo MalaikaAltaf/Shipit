@@ -1,0 +1,41 @@
+# Secrets & local configuration
+.neon
+.env.local
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Internal planning and agent files
+.agents/
+ShipIt_PRD.md
+ShipIt_TRD.md
+ShipIt_UIUX.md
+
+# Python virtual environment and caches
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Build artifacts
+*.egg-info/
+dist/
+build/
+
+# Dependencies
+node_modules/
+
+# Template files not used by the application
+frontend/README.md
+frontend/src/assets/react.svg
+frontend/src/assets/vite.svg
+
+# Local tooling and OS files
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.DS_Store
+Thumbs.db

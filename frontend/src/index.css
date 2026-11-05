@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  /* In-App Product (dark, warm-ink base) */
+  --ink-base: #1C1A22;
+  --ink-surface: #252230;
+  --paper: #F3F1EC;
+  --paper-muted: #A9A6B8;
+  --accent-primary: #8B85C1;
+  --status-pass: #8FB08A;
+  --status-pending: #E0A458;
+  --status-fail: #C1625A;
+  --glass-fill: rgba(243, 241, 236, 0.06);
+  --glass-border: rgba(243, 241, 236, 0.14);
+
+  /* Landing Page (light, neo-brutalist) */
+  --paper-bright: #F5F2E8;
+  --ink-solid: #171519;
+  --brand-bolt: #8B85C1;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--paper-bright);
+  color: var(--ink-solid);
+  font-family: 'Space Grotesk', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+a {
+  color: var(--brand-bolt);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: 'Space Grotesk', sans-serif;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: inherit;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Accessibility: Focus rings */
+*:focus-visible {
+  outline: 2px solid var(--brand-bolt);
+  outline-offset: 2px;
+}
+
+/* Layout helpers */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Typography */
+.mono {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
+/* Base UI Components (Brutalist style) */
+.glass-panel, .opaque-panel {
+  background: var(--paper-bright);
+  border: 2px solid var(--ink-solid);
+  border-radius: 0;
+  box-shadow: 4px 4px 0 var(--ink-solid);
+}
+
+.btn-primary {
+  background: var(--brand-bolt);
+  color: var(--ink-solid);
+  border: 2px solid var(--ink-solid);
+  padding: 0.5rem 1rem;
+  border-radius: 0;
+  font-weight: 700;
+  box-shadow: 2px 2px 0 var(--ink-solid);
+  transition: transform 100ms ease, box-shadow 100ms ease;
+}
+.btn-primary:hover:not(:disabled) {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--ink-solid);
+}
+.btn-primary:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0 var(--ink-solid);
+}
+
+/* Neo-Brutalist Components */
+.btn-brutalist {
+  background: var(--paper-bright);
+  color: var(--ink-solid);
+  border: 2px solid var(--ink-solid);
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 4px 4px 0 var(--ink-solid);
+  transition: transform 100ms ease, box-shadow 100ms ease;
+}
+.btn-brutalist:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--ink-solid);
+}
+
+.brutalist-card {
+  background: var(--paper-bright);
+  border: 2px solid var(--ink-solid);
+  box-shadow: 4px 4px 0 var(--ink-solid);
+}
+
+/* Status Indicator */
+.status-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.status-dot::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.status-dot.pass { color: var(--status-pass); }
+.status-dot.pass::before { background-color: var(--status-pass); }
+.status-dot.pending { color: var(--status-pending); }
+.status-dot.pending::before { border: 2px solid var(--status-pending); background: transparent; width: 4px; height: 4px; }
+.status-dot.fail { color: var(--status-fail); }
+.status-dot.fail::before { background-color: var(--status-fail); }
+
+/* Score Assembly Animation */
+@keyframes landIn {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-land {
+  animation: landIn 300ms ease-out forwards;
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-land {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Specific component styles */
+.workspace-layout {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 60px); /* Minus navbar */
+}
+@media (min-width: 768px) {
+  .workspace-layout {
+    flex-direction: row;
+  }
+}
